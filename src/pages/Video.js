@@ -4,7 +4,7 @@ import VideoSidebar from './components/sidebar/VideoSidebar'
 import { debounce } from '@mui/material'
 import "./video.css"
 
-function Video({likes, messages, shares, name, description, music, url}) {
+function Video({likes, messages, shares, name, description, music, url, Profile}) {
     const videoRef = useRef(null)
     const [play, setPlay] = useState(false)
 
@@ -47,6 +47,7 @@ function Video({likes, messages, shares, name, description, music, url}) {
             >   
             </video>
             <VideoSidebar 
+                Profile={ Profile }
                 likes={likes}
                 messages={messages}
                 shares={shares}

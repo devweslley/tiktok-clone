@@ -5,7 +5,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ChatIcon from '@mui/icons-material/Chat';
 import ShareIcon from '@mui/icons-material/Share';
 
-function VideoSidebar({likes, messages, shares}) {
+function VideoSidebar({likes, messages, shares, Profile}) {
 
     const [liked, setLiked] = useState(false)
 
@@ -16,7 +16,7 @@ function VideoSidebar({likes, messages, shares}) {
   return (
     <div className='videoSidebar'>
         <div>
-            <img className='imgProfile' src="https://firebasestorage.googleapis.com/v0/b/tiktok---jclone.appspot.com/o/imgProfile.jpg?alt=media&token=1af14447-d470-46ac-bb8a-5ab9b826a55e" alt='Perfil' />
+            <img className='imgProfile' src={ Profile } alt='Perfil' />
         </div>
         <div className='videoSidebar__options' onClick={handdleLike}>
             { liked ? <FavoriteIcon fontSize='large'/> : <FavoriteBorderIcon fontSize='large'/>}

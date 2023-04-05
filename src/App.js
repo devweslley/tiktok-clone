@@ -30,6 +30,7 @@ function App() {
         {video.map((item)=>{
           return (
             <Video 
+              Profile={ item.Profile }
               likes={item.likes}
               messages={item.messages}
               shares={item.shares}
