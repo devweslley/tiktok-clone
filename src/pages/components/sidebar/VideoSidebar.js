@@ -15,10 +15,10 @@ function VideoSidebar({likes, messages, shares}) {
 
   return (
     <div className='videoSidebar'>
-        <div 
-            className='videoSidebar__options'
-            onClick={handdleLike}
-        >
+        <div>
+            <img className='imgProfile' src="https://firebasestorage.googleapis.com/v0/b/tiktok---jclone.appspot.com/o/imgProfile.jpg?alt=media&token=1af14447-d470-46ac-bb8a-5ab9b826a55e" alt='Perfil' />
+        </div>
+        <div className='videoSidebar__options' onClick={handdleLike}>
             { liked ? <FavoriteIcon fontSize='large'/> : <FavoriteBorderIcon fontSize='large'/>}
             <p>{ liked ? likes + 1 : likes }</p>
         </div>
@@ -31,7 +31,6 @@ function VideoSidebar({likes, messages, shares}) {
             <p>{ shares }</p>
         </div>
     </div>
-    
   )
 }
 
