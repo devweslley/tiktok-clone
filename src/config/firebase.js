@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from 'firebase/firestore/lite';
 
-/*
+
 const firebaseConfig = {
   apiKey: "apiKey",
   authDomain: "authDomain",
@@ -10,7 +10,6 @@ const firebaseConfig = {
   messagingSenderId: "messagingSenderId",
   appId: "appId"
 };
-*/
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
