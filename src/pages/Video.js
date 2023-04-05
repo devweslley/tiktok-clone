@@ -19,22 +19,22 @@ function Video({likes, messages, shares, name, description, music, url}) {
     }
 
     useEffect(() => {
-    const handleScrollDebounced = debounce(() => {
-      if (videoRef.current) {
-        videoRef.current.currentTime = 0; // Define o tempo de reprodução para 0 segundos
-        videoRef.current.pause(); // Pausa a reprodução do vídeo
-        //setPlay(false); // Atualiza o estado do botão de reprodução
-      }
-    }, 800);
-  
-    window.addEventListener("keydown", handleScrollDebounced);
-    window.addEventListener("wheel", handleScrollDebounced); // Adiciona o ouvinte de evento para o evento "keydown"
-  
-    return () => {
-      window.removeEventListener("keydown", handleScrollDebounced);
-      window.addEventListener("wheel", handleScrollDebounced); // Remove o ouvinte de evento quando o componente é desmontado
-    };
-  }, []);
+        const handleScroll = () => {
+            if (videoRef.current) {
+                videoRef.current.currentTime = 0;
+                videoRef.current.pause();
+                setPlay(false);
+            }
+            };
+        
+            window.addEventListener("keydown", handleScroll);
+            window.addEventListener("wheel", handleScroll);
+        
+            return () => {
+            window.removeEventListener("keydown", handleScroll);
+            window.removeEventListener("wheel", handleScroll);
+            };
+        }, []);
     
     return (
         <div className='video'>
