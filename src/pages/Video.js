@@ -18,23 +18,40 @@ function Video({likes, messages, shares, name, description, music, url, Profile}
         }
     }
 
-    useEffect(() => {
-    const handleScrollDebounced = debounce(() => {
-      if (videoRef.current) {
-        videoRef.current.currentTime = 0; // Define o tempo de reprodução para 0 segundos
-        videoRef.current.pause(); // Pausa a reprodução do vídeo
-        //setPlay(false); // Atualiza o estado do botão de reprodução
-      }
-    }, 800);
-  
-    window.addEventListener("keydown", handleScrollDebounced);
-    window.addEventListener("wheel", handleScrollDebounced); // Adiciona o ouvinte de evento para o evento "keydown"
-  
-    return () => {
-      window.removeEventListener("keydown", handleScrollDebounced);
-      window.addEventListener("wheel", handleScrollDebounced); // Remove o ouvinte de evento quando o componente é desmontado
-    };
-  }, []);
+    // FUNÇÃO PLAY/PAUSE AO ROLAR A PÁGINA
+    useEffect(() => { 
+        const handleVideoEnded = () => { 
+          videoRef.current.pause(); 
+        }; 
+       
+        const handleScrollDebounced = debounce(() => { 
+          if (videoRef.current) { 
+            videoRef.current.currentTime = 0; 
+            videoRef.current.pause(); 
+          }  
+        }, 300); 
+       
+        const videos = document.querySelectorAll("video"); 
+       
+        videos.forEach(video => { 
+          video.addEventListener("ended", handleVideoEnded); 
+        }); 
+       
+        window.addEventListener("keydown", handleScrollDebounced); 
+        window.addEventListener("wheel", handleScrollDebounced); 
+        window.addEventListener("touchmove", handleScrollDebounced); 
+       
+        return () => { 
+          videos.forEach(video => { 
+            video.removeEventListener("ended", handleVideoEnded); 
+          }); 
+       
+          window.removeEventListener("keydown", handleScrollDebounced); 
+          window.removeEventListener("wheel", handleScrollDebounced); 
+          window.removeEventListener("touchmove", handleScrollDebounced); 
+        }; 
+      }, []);
+  // FUNÇÃO PLAY/PAUSE AO ROLAR A PÁGINA 
     
     return (
         <div className='video'>
